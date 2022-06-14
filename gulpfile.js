@@ -1,18 +1,20 @@
 const { src, dest, watch, series, parallel } = require('gulp');
 
 const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const browserSync = require("browser-sync").create();
 var replace = require('gulp-replace');
 
 // File paths
 const files = { 
     scssPath: 'src/scss/**/*.scss',
-    jsPath: 'src/js/**/*.js'
+    jsPath: 'src/js/**/*.js',
+    htmlPath: './index.html'
 };
 
 function scssTask(){    
@@ -43,8 +45,15 @@ function cacheBustTask(){
 }
 
 function watchTask(){
-    watch([files.scssPath, files.jsPath], 
-        parallel(scssTask, jsTask));    
+    browserSync.init({
+        server: "./",
+    });
+    watch([files.scssPath, files.jsPath, files.htmlPath],
+        series(scssTask, jsTask, reload));
+}
+
+function reload() {
+    browserSync.reload();
 }
 
 exports.default = series(
