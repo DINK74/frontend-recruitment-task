@@ -1,0 +1,71 @@
+@use "sass:math";
+
+$base-font-family: "Roboto", sans-serif;
+$base-font-size: 16px;
+$base-background-color: #E5E5E5;
+$base-color-dark: #121212;
+$base-color-primary: #E4C1AE;
+
+$container-width: 1200px;
+$container-background-color: white;
+
+html {
+	box-sizing: border-box;
+	font-size: $base-font-size;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+body {
+	background-color: $base-background-color;
+}
+
+h1 {
+	font-family: $base-font-family;
+	font-weight: 700;
+	font-size: 2.625rem;
+	line-height: 3.15rem;
+	color: $base-color-dark;
+}
+
+p {
+	font-family: $base-font-family;
+	font-weight: 300;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: $base-color-dark;
+}
+
+.container {
+	width: $container-width;
+	background-color: $container-background-color;
+	margin: 0 auto;
+	display: flex;
+
+}
+
+.button {
+	background-color: $base-color-primary;
+	color: white;
+	border: none;
+	border-radius: math.div(32px, $base-font-size) * 1rem;
+	width: math.div(128px, $base-font-size) * 1rem;
+	height: math.div(48px, $base-font-size) * 1rem;
+	font-family: $base-font-family;
+	font-weight: 700;
+	font-size: 1rem;
+	cursor: pointer;
+}
