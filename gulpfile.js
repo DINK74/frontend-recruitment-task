@@ -48,12 +48,15 @@ function watchTask(){
     browserSync.init({
         server: "./",
     });
-    watch([files.scssPath, files.jsPath, files.htmlPath],
-        series(scssTask, jsTask, reload));
+    watch(
+        [files.scssPath, files.jsPath, files.htmlPath],
+        series(scssTask, jsTask, reload)
+    );
 }
 
-function reload() {
+function reload(done) {
     browserSync.reload();
+    done();
 }
 
 exports.default = series(
